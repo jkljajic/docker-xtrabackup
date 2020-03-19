@@ -11,7 +11,7 @@ RUN     apt-get -qq update
 RUN     apt-get -qq install wget nmap lsb-release gnupg rsync libaio1 libcurl3 libev4 
 RUN     wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb 
 RUN     wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-8.0.4/binary/debian/stretch/x86_64/percona-xtrabackup-80_8.0.4-1.stretch_amd64.deb
-RUN     dpkg -i mysql-apt-config_0.8.11-1_all.deb
+RUN     dpkg -i mysql-apt-config_0.8.15-1_all.deb
 RUN     apt-get -qq update 
 RUN     apt-get -qq install mysql-client libdbd-mysql-perl 
 RUN     dpkg -i percona-xtrabackup-80_8.0.4-1.stretch_amd64.deb
