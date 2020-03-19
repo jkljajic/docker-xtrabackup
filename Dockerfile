@@ -1,20 +1,15 @@
-FROM    debian:stretch-slim
+FROM    mysql:8.0.19
 
 LABEL   MAINTAINER="Jovo Kljajic <jovo.Kljajic@seavus.com>"
 
-ARG     XTRABACKUP_VERSION="80_0.4-1"
-ENV     XTRABACKUP_TARGET_DIR="/target" \
-        XTRABACKUP_SOURCE_DIR="/var/lib/mysql"
+ARG     XTRABACKUP_VERSION="80_0.10-1"
+ENV     XTRABACKUP_TARGET_DIR="/target" 
+ENV     XTRABACKUP_SOURCE_DIR="/var/lib/mysql"
 
-RUN     set -x 
+RUN 	apt update && apt install -y wget libdbd-mysql-perl rsync libcurl4-openssl-dev libev4
+RUN     wget https://www.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0-10/binary/debian/buster/x86_64/percona-xtrabackup-80_8.0.10-1.buster_amd64.deb
+RUN     dpkg -i percona-xtrabackup-80_8.0.10-1.buster_amd64.deb
 RUN     apt-get -qq update 
-RUN     apt-get -qq install wget nmap lsb-release gnupg rsync libaio1 libcurl3 libev4 
-RUN     wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb 
-RUN     wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-8.0.4/binary/debian/stretch/x86_64/percona-xtrabackup-80_8.0.4-1.stretch_amd64.deb
-RUN     dpkg -i mysql-apt-config_0.8.15-1_all.deb
-RUN     apt-get -qq update 
-RUN     apt-get -qq install mysql-client libdbd-mysql-perl 
-RUN     dpkg -i percona-xtrabackup-80_8.0.4-1.stretch_amd64.deb
 RUN     apt-get -qq purge wget 
 RUN     apt-get -qq autoclean 
 RUN     apt-get -qq autoremove 
