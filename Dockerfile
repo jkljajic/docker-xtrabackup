@@ -1,6 +1,6 @@
 FROM    debian:stretch-slim
 
-LABEL   MAINTAINER="Martin Helmich <m.helmich@mittwald.de>"
+LABEL   MAINTAINER="Jovo Kljajic <jovo.Kljajic@seavus.com>"
 
 ARG     XTRABACKUP_VERSION="8.0.6-1"
 ENV     XTRABACKUP_TARGET_DIR="/target" \
@@ -8,7 +8,7 @@ ENV     XTRABACKUP_TARGET_DIR="/target" \
 
 RUN     set -x && \
         apt-get -qq update && \
-        apt-get -qq install wget && \
+        apt-get -qq install wget mysql-client nmap && \
         # do some sick versioning stuff because percona has a very "special" versioning
         ## '8.0.6-1' to '8.0-6'
         XTRABACKUP_VERSION_DASH="$(echo "${XTRABACKUP_VERSION%-*}" | sed -E "s/(.*)\./\1-/")" && \
