@@ -1,16 +1,16 @@
-FROM    mysql:5.7.29
+FROM    mysql:8.0.19
 
 LABEL   MAINTAINER="Jovo Kljajic <jovo.Kljajic@seavus.com>"
 
-ARG     XTRABACKUP_VERSION="24_2.4.18-1"
+ARG     XTRABACKUP_VERSION="80_8.0.10-1"
 ENV     XTRABACKUP_TARGET_DIR="/target" 
 ENV     XTRABACKUP_SOURCE_DIR="/var/lib/mysql"
 
 RUN 	apt update && apt install -y wget libdbd-mysql-perl rsync libcurl4-openssl-dev libev4 nmap ncat
-RUN     wget https://www.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.18/binary/debian/buster/x86_64/percona-xtrabackup-24_2.4.18-1.buster_amd64.deb
-RUN     dpkg -i percona-xtrabackup-24_2.4.18-1.buster_amd64.deb
-#RUN     wget https://www.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0-10/binary/debian/buster/x86_64/percona-xtrabackup-80_8.0.10-1.buster_amd64.deb
-#RUN     dpkg -i percona-xtrabackup-80_8.0.10-1.buster_amd64.deb
+#RUN     wget https://www.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.18/binary/debian/buster/x86_64/percona-xtrabackup-24_2.4.18-1.buster_amd64.deb
+#RUN     dpkg -i percona-xtrabackup-24_2.4.18-1.buster_amd64.deb
+RUN     wget https://www.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0-10/binary/debian/buster/x86_64/percona-xtrabackup-80_8.0.10-1.buster_amd64.deb
+RUN     dpkg -i percona-xtrabackup-80_8.0.10-1.buster_amd64.deb
 RUN     apt-get -qq update 
 RUN     apt-get -qq purge wget 
 RUN     apt-get -qq autoclean 
