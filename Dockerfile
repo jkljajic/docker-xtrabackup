@@ -1,8 +1,8 @@
-FROM    mysql:8.0.19
+FROM    mysql:8.0.20
 
 LABEL   MAINTAINER="Jovo Kljajic <jovo.Kljajic@seavus.com>"
 
-ARG     XTRABACKUP_VERSION="80_8.0.10-2"
+ARG     XTRABACKUP_VERSION="80_8.0.12-1"
 ENV     XTRABACKUP_TARGET_DIR="/target" 
 ENV     XTRABACKUP_SOURCE_DIR="/var/lib/mysql"
 
