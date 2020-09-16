@@ -3,7 +3,7 @@ FROM    mysql:8.0.21
 LABEL   MAINTAINER="Jovo Kljajic <jovo.Kljajic@seavus.com>"
 
 ARG     XTRABACKUP_PREFIX="80"
-ARG     XTRABACKUP_VERSION="8.0.13"
+ARG     XTRABACKUP_VERSION="8.0.14"
 ENV     XTRABACKUP_TARGET_DIR="/target" 
 ENV     XTRABACKUP_SOURCE_DIR="/var/lib/mysql"
 
@@ -18,7 +18,8 @@ RUN     apt-get -qq autoclean
 RUN     apt-get -qq autoremove 
 RUN     rm -rf /tmp/* /var/cache/apt/* /var/cache/depconf/*
 
-COPY    entrypoint.sh /entrypoint.sh
-VOLUME  /var/backup/mysql
+#COPY    entrypoint.sh /entrypoint.sh
+#VOLUME  /var/backup/mysql
 
-ENTRYPOINT [ "/entrypoint.sh" ]
+#ENTRYPOINT [ "/entrypoint.sh" ]
+CMD ["/bin/bash"]
